@@ -13,7 +13,7 @@ class AuthService {
     this.account = new Account(this.client);
   }
 
-  async CreateAccount({
+  async createAccount({
     email,
     password,
     name,
@@ -30,7 +30,7 @@ class AuthService {
         name
       );
       if (userAccount) {
-        return this.Login({ email, password });
+        return this.login({ email, password });
       }
     } catch (error) {
       console.log('Error in CreateAccount:: ' + error);
@@ -38,7 +38,7 @@ class AuthService {
     return null;
   }
 
-  async Login({ email, password }: { email: string; password: string }) {
+  async login({ email, password }: { email: string; password: string }) {
     try {
       const session = await this.account.createSession(email, password);
       return session;
@@ -48,7 +48,7 @@ class AuthService {
     }
   }
 
-  async Logout() {
+  async logout() {
     try {
       await this.account.deleteSessions();
       return true;
