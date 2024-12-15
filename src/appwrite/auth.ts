@@ -40,7 +40,10 @@ class AuthService {
 
   async login({ email, password }: { email: string; password: string }) {
     try {
-      const session = await this.account.createSession(email, password);
+      const session = await this.account.createEmailPasswordSession(
+        email,
+        password
+      );
       return session;
     } catch (error) {
       console.log('Error in Login:: ' + error);
